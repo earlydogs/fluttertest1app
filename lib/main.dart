@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -31,19 +32,36 @@ class MyHomePage extends StatefulWidget{
 
 }
 
+class Data{
+  int _price;
+  String _name;
+
+  Data(this._name, this._price): super();
+  @override
+  String toString() {
+    // TODO: implement toString
+    return _name + ':' + _price.toString() + '円';
+  }
+}
+
 class _MyHomePageState extends State<MyHomePage>{
 
-  String _message;
+  static final _data = [
+    Data('Apple',200),
+    Data('Orange',150),
+    Data('Peach',300)
+  ];
+  Data _item;
 
   @override
   void initState(){
     super.initState();
-    _message = 'Hello! Flutter!';
+    _item = _data[0];
   }
 
-  void _setMessage(){
+  void _setData(){
     setState(() {
-      _message = 'Yeah!!';
+      _item = (_data..shuffle()).first;
     });
   }
 
@@ -55,12 +73,12 @@ class _MyHomePageState extends State<MyHomePage>{
       ),
 
       body: Text(
-        _message,
+        _item.toString(),
         style: TextStyle(fontSize: 32.0),
       ),
 
       floatingActionButton: FloatingActionButton(
-        onPressed: _setMessage,
+        onPressed: _setData,
         tooltip: 'set message',
         child: Icon(Icons.star),
       ),
