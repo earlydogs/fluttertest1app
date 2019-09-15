@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:decimal/decimal.dart';
+import 'dart:math';
+
 
 void main() {
   runApp(new MyApp());
@@ -31,6 +33,8 @@ class _MyHomePageState extends State<MyHomePage> {
   //とりあえずやってみよう。ウィジェットのビルドは最後に記載するとわかりやすい。
 
   var _message;
+  final d = Decimal.parse;
+
 
   //入力項目のコントローラ
   final controllerCurrentBalance   = TextEditingController();
@@ -47,11 +51,13 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void buttonPressed() {
-    //big decimal で受け取り
-    var inputCurrentBalance   = Decimal.parse(controllerCurrentBalance.text);
-    var inputMonthlyAddition  = Decimal.parse(controllerMonthlyAddition.text);
-    var inputInterestRateYear = Decimal.parse(controllerInterestRateYear.text);
-    var inputPeriodYear       = Decimal.parse(controllerPeriodYear.text);
+    //big decimal で受け取る
+    var inputCurrentBalance    = d(controllerCurrentBalance.text);
+    var inputMonthlyAddition   = d(controllerMonthlyAddition.text);
+    var inputInterestRateYear  = d(controllerInterestRateYear.text);
+    var inputPeriodYear        = d(controllerPeriodYear.text);
+    var inputInterestRateMonth = (pow(1+(inputInterestRateYear/100),d('0.08333'))*10000).round()/10000;
+
 
 
     setState(() {
