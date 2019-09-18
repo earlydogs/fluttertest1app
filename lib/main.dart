@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:decimal/decimal.dart';
 import 'dart:math';
-import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:flutter/cupertino.dart';
 
 void main() {
@@ -36,9 +35,10 @@ class _MyHomePageState extends State<MyHomePage> {
   var _message;
 //  final d = Decimal.parse;
 
-
-  var _emailFocusNode = FocusNode();
-  var _passwordFocusNode = FocusNode();
+  var _currentBalanceFocusNode = FocusNode();
+  var _monthlyAdditionFocusNode = FocusNode();
+  var _interestRateYearFocusNode = FocusNode();
+  var _periodYearFocusNode = FocusNode();
 
   //入力項目のコントローラ
   final _controllerCurrentBalance = TextEditingController();
@@ -46,7 +46,6 @@ class _MyHomePageState extends State<MyHomePage> {
   final _controllerInterestRateYear = TextEditingController();
   final _controllerPeriodYear = TextEditingController();
   //final _textController = TextEditingController();
-
 
   @override
   void initState() {
@@ -80,15 +79,16 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: GestureDetector(
         onTap: () {
-    _emailFocusNode.unfocus();
-    _passwordFocusNode.unfocus();
-
+          _currentBalanceFocusNode.unfocus();
+          _monthlyAdditionFocusNode.unfocus();
+          _interestRateYearFocusNode.unfocus();
+          _periodYearFocusNode.unfocus();
         },
-    child:new GridView.extent(
+        child: new GridView.extent(
           maxCrossAxisExtent: 600.0,
           mainAxisSpacing: 10.0,
           crossAxisSpacing: 10.0,
-          childAspectRatio: 0.7,
+          childAspectRatio: 1.0,
           padding: const EdgeInsets.all(10.0),
           children: <Widget>[
             Container(
@@ -111,9 +111,10 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         controller: _controllerCurrentBalance,
                         keyboardType: TextInputType.number,
-                          focusNode: _emailFocusNode,
+                        focusNode: _currentBalanceFocusNode,
                         style: TextStyle(
-                            fontSize: 20.0,
+                            fontSize: 18.0,
+                            height: 0.8,
                             color: Colors.blueAccent,
                             fontWeight: FontWeight.w400,
                             fontFamily: "Roboto"),
@@ -132,9 +133,10 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         controller: _controllerMonthlyAddition,
                         keyboardType: TextInputType.number,
-                          focusNode: _passwordFocusNode,
+                        focusNode: _monthlyAdditionFocusNode,
                         style: TextStyle(
-                            fontSize: 20.0,
+                            fontSize: 18.0,
+                            height: 0.8,
                             color: Colors.blueAccent,
                             fontWeight: FontWeight.w400,
                             fontFamily: "Roboto"),
@@ -153,8 +155,10 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         controller: _controllerInterestRateYear,
                         keyboardType: TextInputType.number,
+                        focusNode: _interestRateYearFocusNode,
                         style: TextStyle(
-                            fontSize: 20.0,
+                            fontSize: 18.0,
+                            height: 0.8,
                             color: Colors.blueAccent,
                             fontWeight: FontWeight.w400,
                             fontFamily: "Roboto"),
@@ -173,8 +177,10 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         controller: _controllerPeriodYear,
                         keyboardType: TextInputType.number,
+                        focusNode: _periodYearFocusNode,
                         style: TextStyle(
-                            fontSize: 20.0,
+                            fontSize: 18.0,
+                            height: 0.8,
                             color: Colors.blueAccent,
                             fontWeight: FontWeight.w400,
                             fontFamily: "Roboto"),
@@ -191,7 +197,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: Text(
                           "複利計算",
                           style: TextStyle(
-                              fontSize: 24.0,
+                              fontSize: 18.0,
+                              height: 1.3,
                               fontWeight: FontWeight.w400,
                               fontFamily: "Roboto",
                               color: Colors.white),
@@ -199,23 +206,12 @@ class _MyHomePageState extends State<MyHomePage> {
                         onPressed: buttonPressed,
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.all(20.0),
-                      child: Text(
-                        _message,
-                        style: TextStyle(
-                            fontSize: 28.0,
-                            color: Colors.pink,
-                            fontWeight: FontWeight.w400,
-                            fontFamily: "Roboto"),
-                      ),
-                    ),
                   ],
                 )),
             Container(
               color: Colors.green,
               child: Text(
-                "Two",
+                _message,
                 style: TextStyle(
                     fontSize: 32.0,
                     fontWeight: FontWeight.w400,
