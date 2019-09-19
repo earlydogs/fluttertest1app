@@ -33,7 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
   //とりあえずやってみよう。ウィジェットのビルドは最後に記載するとわかりやすい。
 
   var _message;
-//  final d = Decimal.parse;
+  final d = Decimal.tryParse;
 
   var _currentBalanceFocusNode = FocusNode();
   var _monthlyAdditionFocusNode = FocusNode();
@@ -54,16 +54,22 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void buttonPressed() {
-    //big decimal で受け取る
-    //  var inputCurrentBalance    = d(controllerCurrentBalance.text);
-    //  var inputMonthlyAddition   = d(controllerMonthlyAddition.text);
-    //  var inputInterestRateYear  = d(controllerInterestRateYear.text);
-    //  var inputPeriodYear        = d(controllerPeriodYear.text);
-    //  var inputInterestRateMonth = (pow(1+(inputInterestRateYear/100),d('0.08333'))*10000).round()/10000;
+    //big decimal で受け取る。が、Doubleで計算しちゃう。。
+    var inputCurrentBalance      = d(_controllerCurrentBalance.text);
+    var inputMonthlyAddition     = d(_controllerMonthlyAddition.text);
+    var inputInterestRateYear    = d(_controllerInterestRateYear.text);
+    var inputPeriodYear          = d(_controllerPeriodYear.text);
+    var inputInterestRateYearNum = d((inputInterestRateYear.toDouble() / 100 + 1).toString());
+    var inputInterestRateMonth   = (pow(inputInterestRateYearNum.toDouble(),d('0.0833333').toDouble())*10000).round()/10000;
 
+    calcValue(inputCurrentBalance, inputMonthlyAddition, inputInterestRateMonth, inputPeriodYear);
     setState(() {
       _message = _controllerCurrentBalance.text;
     });
+  }
+
+  void calcValue(var a, var b, var c, var d){
+
   }
 
   @override

@@ -26,7 +26,7 @@ dependencies:
 
   #add packages
   keyboard_actions: ^2.1.2
-  decimal: ^0.3.0
+  decimal: ^0.3.5
 
 dev_dependencies:
   flutter_test:
