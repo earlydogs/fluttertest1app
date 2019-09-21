@@ -98,8 +98,9 @@ class _MyHomePageState extends State<MyHomePage> {
           maxCrossAxisExtent: 600.0,
           mainAxisSpacing: 15.0,
           crossAxisSpacing: 10.0,
-          childAspectRatio: 1.05,
+          childAspectRatio: 0.89,
           padding: const EdgeInsets.all(10.0),
+          
           children: <Widget>[
             Container(
                 decoration: BoxDecoration(
@@ -129,7 +130,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         keyboardType: TextInputType.number,
                         focusNode: _currentBalanceFocusNode,
                         style: TextStyle(
-                            fontSize: 18.0,
+                            fontSize: 16.0,
                             height: 0.8,
                             color: Colors.blueAccent,
                             fontWeight: FontWeight.w400,
@@ -151,7 +152,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         keyboardType: TextInputType.number,
                         focusNode: _monthlyAdditionFocusNode,
                         style: TextStyle(
-                            fontSize: 18.0,
+                            fontSize: 16.0,
                             height: 0.8,
                             color: Colors.blueAccent,
                             fontWeight: FontWeight.w400,
@@ -173,7 +174,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         keyboardType: TextInputType.number,
                         focusNode: _interestRateYearFocusNode,
                         style: TextStyle(
-                            fontSize: 18.0,
+                            fontSize: 16.0,
                             height: 0.8,
                             color: Colors.blueAccent,
                             fontWeight: FontWeight.w400,
@@ -195,7 +196,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         keyboardType: TextInputType.number,
                         focusNode: _periodYearFocusNode,
                         style: TextStyle(
-                            fontSize: 18.0,
+                            fontSize: 16.0,
                             height: 0.8,
                             color: Colors.blueAccent,
                             fontWeight: FontWeight.w400,
