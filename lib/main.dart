@@ -55,22 +55,26 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void buttonPressed() {
     //big decimal で受け取る。が、Doubleで計算しちゃう。。
-    var inputCurrentBalance      = d(_controllerCurrentBalance.text);
-    var inputMonthlyAddition     = d(_controllerMonthlyAddition.text);
-    var inputInterestRateYear    = d(_controllerInterestRateYear.text);
-    var inputPeriodYear          = d(_controllerPeriodYear.text);
-    var inputInterestRateYearNum = d((inputInterestRateYear.toDouble() / 100 + 1).toString());
-    var inputInterestRateMonth   = (pow(inputInterestRateYearNum.toDouble(),d('0.0833333').toDouble())*10000).round()/10000;
+    var inputCurrentBalance = d(_controllerCurrentBalance.text);
+    var inputMonthlyAddition = d(_controllerMonthlyAddition.text);
+    var inputInterestRateYear = d(_controllerInterestRateYear.text);
+    var inputPeriodYear = d(_controllerPeriodYear.text);
+    var inputInterestRateYearNum =
+        d((inputInterestRateYear.toDouble() / 100 + 1).toString());
+    var inputInterestRateMonth =
+        (pow(inputInterestRateYearNum.toDouble(), d('0.0833333').toDouble()) *
+                    10000)
+                .round() /
+            10000;
 
-    calcValue(inputCurrentBalance, inputMonthlyAddition, inputInterestRateMonth, inputPeriodYear);
+    calcValue(inputCurrentBalance, inputMonthlyAddition, inputInterestRateMonth,
+        inputPeriodYear);
     setState(() {
       _message = _controllerCurrentBalance.text;
     });
   }
 
-  void calcValue(var a, var b, var c, var d){
-
-  }
+  void calcValue(var a, var b, var c, var d) {}
 
   @override
   Widget build(BuildContext context) {
@@ -92,15 +96,21 @@ class _MyHomePageState extends State<MyHomePage> {
         },
         child: new GridView.extent(
           maxCrossAxisExtent: 600.0,
-          mainAxisSpacing: 10.0,
+          mainAxisSpacing: 15.0,
           crossAxisSpacing: 10.0,
-          childAspectRatio: 1.0,
+          childAspectRatio: 1.05,
           padding: const EdgeInsets.all(10.0),
           children: <Widget>[
             Container(
-                color: Colors.white70,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  boxShadow: const [
+                    BoxShadow(blurRadius: 0.5),
+                  ],
+                ),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
@@ -193,7 +203,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.fromLTRB(25.0, 5.0, 25.0, 5.0),
+                      padding: EdgeInsets.fromLTRB(25.0, 5.0, 25.0, 13.0),
                       child: FlatButton(
                         padding: EdgeInsets.all(15.0),
                         color: Colors.blueAccent,
@@ -215,7 +225,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   ],
                 )),
             Container(
-              color: Colors.green,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+                boxShadow: const [
+                  BoxShadow(blurRadius: 0.5),
+                ],
+              ),
               child: Text(
                 _message,
                 style: TextStyle(
@@ -225,7 +241,13 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             Container(
-              color: Colors.blue,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+                boxShadow: const [
+                  BoxShadow(blurRadius: 0.5),
+                ],
+              ),
               child: Text(
                 "Three",
                 style: TextStyle(
